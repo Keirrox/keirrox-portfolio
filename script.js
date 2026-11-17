@@ -1,1 +1,21 @@
-const button=document.querySelector('.menu');const nav=document.querySelector('nav');if(button&&nav){button.addEventListener('click',()=>{const open=nav.classList.toggle('open');button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');button.setAttribute('aria-expanded','false')}));}
+const menuButton=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav');
+if(menuButton&&nav){
+  menuButton.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded',String(open));
+    menuButton.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  });
+  nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    nav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded','false');
+    menuButton.setAttribute('aria-label','Open navigation');
+  }));
+}
+document.querySelectorAll('.project-video').forEach(video=>{
+  video.addEventListener('play',()=>{
+    document.querySelectorAll('.project-video').forEach(other=>{
+      if(other!==video) other.pause();
+    });
+  });
+});
